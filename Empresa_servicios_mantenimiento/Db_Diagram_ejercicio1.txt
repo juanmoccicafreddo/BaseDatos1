@@ -1,0 +1,62 @@
+Table Empresa_Clientes {
+id_clientes int [primary key]
+id_tecnicos int
+id_equipos int
+id_sectores int
+nombre varchar (100)
+direccion varchar (100)
+area varchar (100)
+}
+
+Table Sectores {
+id_sectores int [primary key]
+descripcion text
+}
+Table Equipos {
+id_equipos int [primary key]
+id_mantenimiento int
+id_proveedores int
+nombre varchar (100)
+tipo varchar (255)
+}
+Table Tecnicos {
+id_tecnicos int [primary key]
+id_empresa int
+nombre varchar (100)
+direccion double
+telefono int
+}
+Table Mantenimiento {
+id_mantenimiento int [primary key]
+id_registro int
+fecha_nac date
+revisado varchar (100)
+reparado varchar (100)
+descripcion text
+}
+Table Proveedores {
+id_proveedores int [primary key]
+nombre varchar (100)
+}
+
+Table Empresa {
+id_empresa int [primary key]
+id_clientes int
+}
+Table Registro {
+id_registro int [primary key]
+retirado varchar (100)
+reemplazo varchar (100)
+cantidad int
+descripcion text
+}
+
+Ref: Empresa.id_empresa> Tecnicos.id_empresa
+Ref: Equipos.id_equipos> Empresa_Clientes.id_equipos
+Ref: Proveedores.id_proveedores> Equipos.id_proveedores
+Ref: Sectores.id_sectores> Empresa_Clientes.id_sectores
+Ref: Registro.id_registro> Mantenimiento.id_registro
+Ref: Mantenimiento.id_mantenimiento> Equipos.id_mantenimiento
+Ref: Empresa_Clientes.id_clientes> Empresa.id_clientes
+Ref: Tecnicos.id_tecnicos> Empresa_Clientes.id_tecnicos
+
